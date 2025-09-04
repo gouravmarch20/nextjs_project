@@ -1,0 +1,64 @@
+.question-item , .quiz-app-one {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    align-items: center;
+  }
+  
+  .question {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+    min-width: 80%;
+  }
+  .options {
+    display: flex;
+    margin: 10px;
+    flex-wrap: wrap;
+  }
+  .option {
+    width: 40%;
+    text-align: center;
+    background-color: blue;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 12px;
+    flex: 1 1 calc(45% - 8px);
+  }
+  
+  .option:hover {
+    transform: translateY(-2px);
+  }
+  .option.red {
+    background-color: #ef4444; /* red-500 */
+  }
+  
+  .option.blue {
+    background-color: #3b82f6; /* blue-500 */
+  }
+  
+  .option.green {
+    background-color: #10b981; /* green-500 */
+  }
+  .question-footer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  .pointer {
+    cursor: pointer;
+  }
+  .no-pointer {
+    cursor: not-allowed;
+  }
+  @media (max-width: 500px) {
+    .option {
+      flex: 1 1 100%;
+    }
+  
+    .question {
+      padding: 12px;
+    }
+  }
+  
