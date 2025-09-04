@@ -17,10 +17,15 @@ const SeatBookingPage = () => {
     }
     if (selectedSeat.includes(seat.seatNumber)) {
       setSelectedSeat((prev) => prev.filter((p) => p !== seat.seatNumber));
-      setPassengerInfo((prev) => prev.filter((p) => p.seatNumber !== seat.seatNumber));
+      setPassengerInfo((prev) =>
+        prev.filter((p) => p.seatNumber !== seat.seatNumber)
+      );
     } else {
       setSelectedSeat((prev) => [...prev, seat.seatNumber]);
-      setPassengerInfo((prev) => [...prev, { seatNumber: seat.seatNumber, name: "", age: 0 }]);
+      setPassengerInfo((prev) => [
+        ...prev,
+        { seatNumber: seat.seatNumber, name: "", age: 0 },
+      ]);
     }
   };
 
@@ -28,10 +33,14 @@ const SeatBookingPage = () => {
     if (seat.isBooked) return "bg-red-400";
     if (selectedSeat.includes(seat.seatNumber)) return "bg-green-400";
     switch (seat.type) {
-      case "VIP": return "bg-yellow-300";
-      case "Regular": return "bg-blue-300";
-      case "Economy": return "bg-gray-300";
-      default: return "bg-slate-700";
+      case "VIP":
+        return "bg-yellow-300";
+      case "Regular":
+        return "bg-blue-300";
+      case "Economy":
+        return "bg-gray-300";
+      default:
+        return "bg-slate-700";
     }
   };
 
@@ -62,7 +71,11 @@ const SeatBookingPage = () => {
     setPassengerInfo([]);
   };
 
-  const handlePassengerChange = (seatNumber: string, field: "name" | "age", value: string) => {
+  const handlePassengerChange = (
+    seatNumber: string,
+    field: "name" | "age",
+    value: string
+  ) => {
     setPassengerInfo((prev) =>
       prev.map((p) =>
         p.seatNumber === seatNumber
@@ -76,9 +89,7 @@ const SeatBookingPage = () => {
     <>
       <h2>Flight Seat Booking</h2>
       <SeatLegend />
-      {
-        console.log("debug_p" ,seats)
-      }
+
       <SeatGrid
         seats={seats}
         selectedSeat={selectedSeat}
@@ -102,7 +113,10 @@ const SeatBookingPage = () => {
           Confirm Booking
         </button>
         <button
-          onClick={() => { setSelectedSeat([]); setPassengerInfo([]); }}
+          onClick={() => {
+            setSelectedSeat([]);
+            setPassengerInfo([]);
+          }}
           className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded shadow"
         >
           Clear Selection

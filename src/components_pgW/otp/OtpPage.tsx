@@ -1,15 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+
 const SIZE = 6;
 
 const OtpPage = () => {
   const [otpInput, setOtpInput] = useState<string[]>(
-    Array.from({ length: SIZE })
+    Array.from({ length: SIZE }, () => "")
   );
-  const inputRefs = useRef<(HTMLElement | null)[]>([]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleFocus = (ind: number) => {
-    const el = inputRefs.current?.[ind];
+    const el = inputRefs.current[ind];
     el?.focus();
   };
 
@@ -22,35 +23,34 @@ const OtpPage = () => {
   };
 
   useEffect(() => {
-    inputRefs.current?.[0]?.focus();
+    inputRefs.current[0]?.focus();
   }, []);
+
   return (
     <div>
       <h1>dsfa</h1>
       <div className="flex gap-2">
-        {otpInput?.map((optI, ind) => (
+        {otpInput.map((val, ind) => (
           <div key={ind}>
-            {" "}
             <input
               type="text"
-              className={`h-20 w-20 rounded-2xl  border-2 border-amber-500  opt-input `}
-              value={otpInput[ind]}
+              maxLength={1}
+              className="h-20 w-20 rounded-2xl border-2 border-amber-500 opt-input text-center text-2xl"
+              value={val}
               onChange={(e) => {
-                const val = e.target.value;
-
+                const inputVal = e.target.value;
                 const newOtp = [...otpInput];
-                newOtp[ind] = val.slice(-1); // takes last char
+                newOtp[ind] = inputVal.slice(-1); // only last char
                 setOtpInput(newOtp);
-                if (val) {
-                  focusNext(ind);
-                }
+                if (inputVal) focusNext(ind);
               }}
-              ref={(el) => (inputRefs.current[ind] = el)}
+              ref={(el) => {
+                inputRefs.current[ind] = el;
+              }}
               onKeyDown={(e) => {
-                console.log("deub", e.key);
-                if (e.key == "ArrowRight") {
-                  handleFocus(ind);
-                } else if (e.key == "ArrowLeft") {
+                if (e.key === "ArrowRight") {
+                  focusNext(ind);
+                } else if (e.key === "ArrowLeft") {
                   focusPrev(ind);
                 } else if (e.key === "Backspace" && !otpInput[ind]) {
                   focusPrev(ind);

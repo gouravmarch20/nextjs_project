@@ -15,7 +15,6 @@ const navLinks = [
 export default function Header() {
   const pathname = usePathname();
   const isWebView = useIsWebView();
-  console.log("isWebView_", isWebView);
 
   function debugLog(message, data) {
     console.log(message, data); // still logs in browser DevTools
