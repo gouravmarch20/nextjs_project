@@ -8,7 +8,7 @@ export const metadata = {
     siteName: "Next.js OG Demo",
     images: [
       {
-        url: "https://resonant-haupia-47f1e7.netlify.app/og-image.png",
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ZwOYPgzLXEmfDmsTaaScmUA6r8LKmmDsFjOF8UVY_LOtHiCDphc19mbGFDWPIsPjMzw&usqp=CAU",
         width: 1200,
         height: 630,
         alt: "OG Demo Image",
@@ -21,7 +21,9 @@ export const metadata = {
     card: "summary_large_image",
     title: "My OG Demo Page",
     description: "This is a demo of Open Graph tags in Next.js",
-    images: ["https://resonant-haupia-47f1e7.netlify.app/og-image.png"],
+    images: [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ZwOYPgzLXEmfDmsTaaScmUA6r8LKmmDsFjOF8UVY_LOtHiCDphc19mbGFDWPIsPjMzw&usqp=CAU",
+    ],
   },
 };
 
