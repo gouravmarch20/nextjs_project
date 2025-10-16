@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/core": "^0.34.2",
     "clsx": "^2.1.1",
     "highcharts": "^12.3.0",
     "highcharts-react-official": "^3.2.2",
     "next": "15.3.4",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-tailwindcss-datepicker": "^2.0.0",
