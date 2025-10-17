@@ -51,6 +51,12 @@ export default function HomePage() {
           >
             Fake Sign In
           </button>
+          <button
+            onClick={() => signIn("google", { prompt: "select_account" })}
+            className="px-6 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Sign In with Google
+          </button>
         </div>
       ) : (
         <div className="flex flex-col items-center space-y-2">

@@ -1,10 +1,12 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: AuthOptions = {
   providers: [
+    // ✅ Credentials (fake login)
     CredentialsProvider({
-      id: "credentials", // Must match signIn()
+      id: "credentials",
       name: "Fake Login",
       credentials: {
         username: { label: "Email", type: "text", placeholder: "Email" },
@@ -13,10 +15,10 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         if (!credentials) return null;
 
-        // Simulate async network call
+        // Simulate async delay
         await new Promise((resolve) => setTimeout(resolve, 500));
 
-        // Return a fake user
+        // Return fake user
         return {
           id: "1",
           name: "Test User",
@@ -25,8 +27,16 @@ export const authOptions: AuthOptions = {
         };
       },
     }),
+
+    // ✅ Google OAuth
+    GoogleProvider({
+      clientId: "1060148903640-vu5h340oi49h2pbcvotl70ip4upvvq9h.apps.googleusercontent.com"      ,
+      clientSecret: "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",
+    }),
   ],
+
   session: { strategy: "jwt" },
+
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.user = user; // store user in token
@@ -37,11 +47,11 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
+
   pages: {
-    signIn: "/oauth", // Your custom page
+    signIn: "/oauth", // custom login page
   },
 };
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
-
